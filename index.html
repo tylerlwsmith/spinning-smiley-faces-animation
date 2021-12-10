@@ -5,15 +5,15 @@
     <meta charset="UTF-8" />
     <style>
       .smiley-container {
-        width: 440px;
         height: 440px;
         position: relative;
         perspective: 50px;
         perspective-origin: center top;
-        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        margin-top: -15vw;
       }
       .smiley {
-        line-height: 1.2;
         font-size: 40px;
         position: absolute;
       }
@@ -31,8 +31,8 @@
             const x = Math.cos((rotationDegree * Math.PI) / 180);
             const z = Math.sin((rotationDegree * Math.PI) / 180);
             smiley.style.transform = `translate3d(
-              ${(x + 1) * 200}px,
-              200px,
+              ${(x + 1) * 20 - 20}vw,
+              ${20}vw,
               ${(z + 1) * 10}px
             )`;
             smiley.style.zIndex = Math.round(z * 100);
