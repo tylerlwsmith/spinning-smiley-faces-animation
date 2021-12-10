@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spinning Smileys</title>
+    <meta charset="UTF-8" />
+    <style>
+      .smiley-container {
+        width: 440px;
+        height: 440px;
+        position: relative;
+        perspective: 50px;
+        perspective-origin: center top;
+        margin: 0 auto;
+      }
+      .smiley {
+        line-height: 1.2;
+        font-size: 40px;
+        position: absolute;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const smilies = document.querySelectorAll(".smiley");
+        [...smilies].forEach((smiley, index, array) => {
+          const currentDegrees = Math.round((360 / array.length) * (index + 1));
+          smiley.currentDegrees = currentDegrees;
+        });
+        window.setInterval(() => {
+          [...smilies].forEach((smiley) => {
+            const rotationDegree = smiley.currentDegrees;
+            const x = Math.cos((rotationDegree * Math.PI) / 180);
+            const z = Math.sin((rotationDegree * Math.PI) / 180);
+            smiley.style.transform = `translate3d(
+              ${(x + 1) * 200}px,
+              200px,
+              ${(z + 1) * 10}px
+            )`;
+            smiley.style.zIndex = Math.round(z * 100);
+            smiley.currentDegrees += 0.5;
+            if (smiley.currentDegrees > 360) smiley.currentDegrees = 0;
+          });
+        }, 10);
+      });
+    </script>
+  </head>
+  <body>
+    <div class="smiley-container">
+      <div class="smiley">😁</div>
+      <div class="smiley">😁</div>
+      <div class="smiley">😁</div>
+      <div class="smiley">😁</div>
+      <div class="smiley">😁</div>
+      <div class="smiley">😁</div>
+      <div class="smiley">😁</div>
+      <div class="smiley">😁</div>
+    </div>
+  </body>
+</html>
